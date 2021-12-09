@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&display=swap');
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/mixins';
+
+//
+// Variables
+// --------------------------------------------------
+
+//== Colors
+//
+//## Theme colors
+
+$theme-colors: (
+  primary: #0ea5e9,
+  secondary: #e5e7eb,
+  success: #14b8a6,
+  danger: #ef4444,
+  warning: #fbbf24,
+  info: #a1a1aa,
+  light: #f8f9fa,
+  dark: #18181b,
+);
+
+$body-bg: map-get(
+  $map: $theme-colors,
+  $key: dark,
+);
+
+$body-color: map-get(
+  $map: $theme-colors,
+  $key: light,
+);
+
+//== Typography
+//
+//## Fonts and text styles
+
+$display1-weight: 600;
+$display2-weight: 600;
+$display3-weight: 600;
+$display4-weight: 600;
+$font-family-sans-serif: 'Poppins', sans-serif;
+$font-family-base: $font-family-sans-serif;
+$font-weight-light: 200;
+$font-weight-normal: 400;
+$font-weight-bold: 600;
+$headings-font-weight: $font-weight-bold;
+
+//== Buttons
+//
+//## Button styling
+
+$btn-font-weight: 600;
+$btn-border-width: 0.125rem;
+
+//
+// Styles
+// --------------------------------------------------
+@import 'bootstrap/scss/bootstrap';
+
+//== Utilities
+//Ø
+//## Modifications of Bootstrap utilities
+
+.text-uppercase {
+  letter-spacing: 0.0125rem;
+}
+
+//== Components
+//
+//## Modifications of Bootstrap components
+
+.btn,
+.btn-sm {
+  letter-spacing: 0.0125rem;
+  text-transform: uppercase;
+}
+
+.nav-link:not(.active) {
+  @extend .bg-secondary;
+}
+
+//== Custom
+//
+//## Custom CSS
+
+.button-row {
+  text-align: center;
+
+  :not(button, svg) {
+    position: absolute;
+  }
+}
+
+.input-group-append {
+  .btn {
+    border-width: 1px;
+  }
+}
+
+.song-request {
+  @extend .mb-3, .p-4, .text-uppercase, .rounded;
+  background-color: map-get($map: $theme-colors, $key: light);
+
+  img,
+  section {
+    @extend .d-block, .mx-auto, .rounded;
+    height: 100%;
+    width: 120px;
+    min-height: 120px;
+  }
+
+  img {
+    object-fit: cover;
+  }
+
+  h1 {
+    @extend .h4, .mt-2, .mb-0, .text-center, .text-primary;
+  }
+
+  h2 {
+    @extend .h5, .mt-0, .text-center, .text-dark;
+  }
+
+  h3 {
+    @extend .text-uppercase, .h6, .text-center, .text-dark;
+  }
+
+  &-actions {
+    display: grid;
+    grid-template-columns: max-content;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &.is-host {
+      grid-template-columns: max-content max-content;
+    }
+  }
+}
+
+@media (min-width: map-get($map: $grid-breakpoints, $key: sm)) {
+  .song-request {
+    display: grid;
+    grid-template-columns: 120px auto 150px;
+    padding: 0rem !important;
+
+    img {
+      margin-left: 0px !important;
+      margin-right: auto !important;
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+
+    h1,
+    h2 {
+      text-align: left !important;
+    }
+
+    div {
+      padding: 0 1rem !important;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &-actions {
+      display: grid !important;
+
+      &.is-host {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+}
+
+.landing-page-image {
+  height: 250px;
+  width: 250px;
+}
+
+@media (min-width: map-get($map: $grid-breakpoints, $key: sm)) {
+  .landing-page-image {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+@media (min-width: map-get($map: $grid-breakpoints, $key: lg)) {
+  .landing-page-image {
+    height: 450px;
+    width: 450px;
+  }
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 34px;
+  margin: 0;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.cleanCheck:checked + .slider {
+  background-color: #0ea5e9;
+}
+
+.cleanCheck:focus + .slider {
+  box-shadow: 0 0 1px #0ea5e9;
+}
+
+.cleanCheck:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.explictMode {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px;
+}
+
+.explictMode span {
+  margin-left: 10px;
+}
